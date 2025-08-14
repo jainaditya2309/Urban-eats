@@ -13,6 +13,7 @@
 
 body {
     font-family: Arial, Helvetica, sans-serif;
+    overflow-x: hidden;
 }
 
 /* ///////////..utility classes../////////// */
@@ -21,6 +22,8 @@ body {
     max-width: 1200px;
     width: 90%;
     margin: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
 }
 
 #showcase{
@@ -49,11 +52,14 @@ body {
     transition: background 0.3s ease-in-out;
 }
 
-/* ............/navbar/............ *
+/* ............/navbar/............ */
 
 /* desktop mode............/// */
 
-.navbar input[type="checkbox"],
+#menu-toggle {
+    display: none;
+}
+
 .navbar .hamburger-lines {
     display: none;
 }
@@ -114,12 +120,12 @@ body {
 
 .showcase-area {
     height: 50vh;
+    min-height: 300px;
     background: linear-gradient(rgba(240, 240, 240, 0.144),
             rgba(255, 255, 255, 0.336)),
         url("img/bg.jpeg");
-        background-position: center;
-    background-size: cover;
     background-position: center;
+    background-size: cover;
     background-repeat: no-repeat;
 }
 
@@ -236,6 +242,8 @@ body {
 .food-container {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
 }
 
 .food-container img {
@@ -313,6 +321,8 @@ body {
     display: flex;
     flex-wrap: wrap;
     padding: 50px 0px 30px 0px;
+    justify-content: center;
+    gap: 15px;
 }
 
 .food-menu-container img {
@@ -371,6 +381,7 @@ body {
     justify-content: space-between;
     margin-top: 30px;
     column-gap: 20px;
+    flex-wrap: wrap;
 }
 
 .testimonial-box .checked {
@@ -391,6 +402,9 @@ body {
     flex-direction: column;
     row-gap: 10px;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    flex: 1;
+    min-width: 280px;
+    margin-bottom: 20px;
 }
 
 .customer-photo img {
@@ -419,6 +433,7 @@ body {
     background: #fff;
     border-radius: 10px;
     padding: 20px;
+    flex-wrap: wrap;
 }
 
 .contact-img {
@@ -507,7 +522,7 @@ body {
         opacity: 0.95;
     }
 
-    .navbar-container input[type="checkbox"],
+    #menu-toggle,
     .navbar-container .hamburger-lines {
         display: block;
     }
@@ -518,7 +533,7 @@ body {
         height: 64px;
     }
 
-    .navbar-container input[type="checkbox"] {
+    #menu-toggle {
         position: absolute;
         display: block;
         height: 32px;
@@ -527,6 +542,7 @@ body {
         left: 20px;
         z-index: 5;
         opacity: 0;
+        cursor: pointer;
     }
 
     .navbar-container .hamburger-lines {
@@ -591,19 +607,19 @@ body {
         font-size: 2rem;
     }
 
-    .navbar-container input[type="checkbox"]:checked~.menu-items {
+    #menu-toggle:checked ~ .menu-items {
         transform: translateX(0);
     }
 
-    .navbar-container input[type="checkbox"]:checked~.hamburger-lines .line1 {
+    #menu-toggle:checked ~ .hamburger-lines .line1 {
         transform: rotate(35deg);
     }
 
-    .navbar-container input[type="checkbox"]:checked~.hamburger-lines .line2 {
+    #menu-toggle:checked ~ .hamburger-lines .line2 {
         transform: scaleY(0);
     }
 
-    .navbar-container input[type="checkbox"]:checked~.hamburger-lines .line3 {
+    #menu-toggle:checked ~ .hamburger-lines .line3 {
         transform: rotate(-35deg);
     }
 
@@ -629,7 +645,7 @@ body {
 
 @media (max-width: 500px) {
     html {
-        font-size: 65%;
+        font-size: 62.5%;
     }
 
     .navbar .menu-items li {
@@ -691,5 +707,69 @@ body {
 @media (orientation: landscape) and (max-height: 500px) {
     .showcase-area {
         height: 50vmax;
+    }
+}
+
+/* Additional responsive styles */
+img, video {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Responsive font sizes for very small screens */
+@media (max-width: 400px) {
+    .main-title {
+        font-size: 2.5rem;
+    }
+    
+    .food-menu-heading {
+        font-size: 2rem;
+    }
+    
+    .testimonial-title {
+        font-size: 1.8rem;
+    }
+    
+    .form-container h2 {
+        font-size: 2rem;
+    }
+}
+
+/* Fix for navbar input checkbox */
+.navbar input[type="checkbox"] {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .navbar-container input[type="checkbox"] {
+        display: block;
+    }
+    
+    /* Fix for menu items */
+    .navbar .menu-items {
+        position: fixed;
+        z-index: 100;
+    }
+}
+
+/* Improve contact section responsiveness */
+@media (max-width: 600px) {
+    .contact-container {
+        padding: 10px;
+    }
+    
+    .contact-img {
+        width: 100%;
+        margin: 0 0 1rem 0;
+    }
+    
+    .contact-img img {
+        border-radius: 10px;
+        height: auto;
+    }
+    
+    .form-container {
+        width: 100%;
+        padding: 1rem 0;
     }
 }
